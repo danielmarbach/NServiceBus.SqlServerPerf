@@ -14,24 +14,18 @@ namespace NServiceBus.SqlServerPerf.V6
     {
         static void Main(string[] args)
         {
-            string connectionString = @"FILL IN HERE"; ;
+            string connectionString = @"Data Source=LAB-DB;Initial Catalog=nservicebus;User Id=sa;Password=pa$$w0rd"; ;
             int numberOfMessages = 10000;
             int messageSize = 1024;
             int concurrency = 1;
 
             for (int i = 0; i < 9; i++)
             {
-                int originalMessageSize = messageSize;
-                for (int j = 0; j < 9; j++)
-                {
-                    SingleSendRun(connectionString, messageSize, numberOfMessages, concurrency);
 
-                    SingleReceiveRun(connectionString, messageSize, numberOfMessages, concurrency);
+                SingleSendRun(connectionString, messageSize, numberOfMessages, concurrency);
 
-                    messageSize *= 4;
-                }
+                SingleReceiveRun(connectionString, messageSize, numberOfMessages, concurrency);
 
-                messageSize = originalMessageSize;
                 concurrency *= 2;
             }
 

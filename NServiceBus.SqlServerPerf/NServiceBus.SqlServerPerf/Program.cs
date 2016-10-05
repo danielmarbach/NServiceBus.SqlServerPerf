@@ -17,7 +17,7 @@ namespace NServiceBus.SqlServerPerf
     {
         static void Main(string[] args)
         {
-            string connectionString = @"FILL IN HERE";
+            string connectionString = @"Data Source=LAB-DB;Initial Catalog=nservicebus;User Id=sa;Password=pa$$w0rd";
             int numberOfMessages = 5000;
             int messageSize = 1024;
             int concurrency = 1;
@@ -102,7 +102,7 @@ namespace NServiceBus.SqlServerPerf
             var stopWatch = Stopwatch.StartNew();
 
             var bus = Bus.Create(configuration).Start();
-            
+
             Syncher.SyncEvent.Wait();
 
             stopWatch.Stop();
